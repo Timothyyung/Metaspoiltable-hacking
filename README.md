@@ -536,4 +536,28 @@ Matching Modules
    auxiliary/scanner/portscan/tcp                                     normal  TCP Port Scanner
    auxiliary/scanner/portscan/xmas                                    normal  TCP "XMas" Port Scanner
    auxiliary/scanner/sap/sap_router_portscanner                       normal  SAPRouter Port Scanner
+   
+   
+   msf auxiliary(scanner/portscan/tcp) > show options
+
+Module options (auxiliary/scanner/portscan/tcp):
+
+   Name         Current Setting  Required  Description
+   ----         ---------------  --------  -----------
+   CONCURRENCY  10               yes       The number of concurrent ports to check per host
+   DELAY        0                yes       The delay between connections, per thread, in milliseconds
+   JITTER       0                yes       The delay jitter factor (maximum value by which to +/- DELAY) in milliseconds.
+   PORTS        1-10000          yes       Ports to scan (e.g. 22-25,80,110-900)
+   RHOSTS                        yes       The target address range or CIDR identifier
+   THREADS      1                yes       The number of concurrent threads
+   TIMEOUT      1000             yes       The socket connect timeout in milliseconds
+
+msf auxiliary(scanner/portscan/tcp) > run
+[-] Auxiliary failed: Msf::OptionValidateError The following options failed to validate: RHOSTS.
+msf auxiliary(scanner/portscan/tcp) > set RHOSTS 10.42.0.1
+RHOSTS => 10.42.0.1
+msf auxiliary(scanner/portscan/tcp) > run
+
+[+] 10.42.0.1:            - 10.42.0.1:53 - TCP OPEN
+
 :
